@@ -6,16 +6,20 @@ public class EmpWage {
       int empRatePerHr=20;
       int empHrs=8;
       double a = Math.random();
-      if (a<0.5){
-          System.out.println("Emplyee is present");
-          salary=empHrs*empRatePerHr;
-          System.out.println("salary is: "+salary);
+      if (0.0 < a && a < 0.33){
+          empHrs=8;
+          System.out.println("Full Time");
+      } 
+      else if (0.33 <= a && a < 0.66){
+          empHrs=4;
+          System.out.println("Part Time");
       }
       else{
-          System.out.println("Emplyee is absent");
-          salary=0;
-          System.out.println("salary is: "+salary);
+          empHrs=0;
+          System.out.println("Null Time");
       }
-      
+
+      salary=empHrs*empRatePerHr;
+      System.out.println("salary is: "+salary);
     }
 }
