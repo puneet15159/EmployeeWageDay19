@@ -8,8 +8,16 @@ public class EmpWage {
       int numberOfWorkingDays=20;
       int totalSalary=0;
     
-      for (int i=0;i<numberOfWorkingDays;i++){
+      int maxHrsInMonth=100;
+      int maxDaysInMonth=20;
+      
+      int totalEmpHrs=0;
+      int totalWorkingDays=0;
+      
+      while (totalEmpHrs < maxHrsInMonth && totalWorkingDays < maxDaysInMonth){
           int a = (int)(Math.random()*((2-0)+1))+0;
+          totalWorkingDays++;
+          
            switch (a) {
         case 0:
             empHrs=8;
@@ -25,11 +33,12 @@ public class EmpWage {
             break;
   
     }
+      totalEmpHrs=totalEmpHrs+empHrs;
       salary=empHrs*empRatePerHr;
       totalSalary=totalSalary+salary;
      
       }
-       System.out.println("Total salary for 20 days is: "+totalSalary);
+       System.out.println("Total salary for 20 days or 100 hours is: "+totalSalary);
      
     }
 }
