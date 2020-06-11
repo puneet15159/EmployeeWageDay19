@@ -5,20 +5,25 @@ public class EmpWage {
       int salary=0;
       int empRatePerHr=20;
       int empHrs=8;
-      double a = Math.random();
-      if (0.0 < a && a < 0.33){
-          empHrs=8;
-          System.out.println("Full Time");
-      } 
-      else if (0.33 <= a && a < 0.66){
-          empHrs=4;
-          System.out.println("Part Time");
-      }
-      else{
-          empHrs=0;
-          System.out.println("Null Time");
-      }
-
+      int a = (int)(Math.random()*((2-0)+1))+0;
+     
+    //   System.out.println(a);
+      
+      switch (a) {
+        case 0:
+            empHrs=8;
+            System.out.println("Full Time");
+            break;
+        case 1:
+            empHrs=4;
+            System.out.println("Part Time");
+            break;
+        case 2:
+            empHrs=0;
+            System.out.println("Null Time");
+            break;
+  
+}
       salary=empHrs*empRatePerHr;
       System.out.println("salary is: "+salary);
     }
