@@ -2,6 +2,7 @@ import java.util.*;
 
 public class EmpWageCalculater {
 
+	String store;
 	int salary;
 	int empRatePerHr;
 	int empHrs;
@@ -14,8 +15,12 @@ public class EmpWageCalculater {
 	int totalEmpHrs;
 	int totalWorkingDays;
 
-	public EmpWageCalculater(int salary, int empRatePerHr, int empHrs, int numberOfWorkingDays, int totalSalary,
-			int maxHrsInMonth, int maxDaysInMonth, int totalEmpHrs, int totalWorkingDays) {
+	int fullTime;
+	int halfTime;
+
+	public EmpWageCalculater(String store, int salary, int empRatePerHr, int empHrs, int numberOfWorkingDays,
+			int totalSalary, int maxHrsInMonth, int maxDaysInMonth, int totalEmpHrs, int totalWorkingDays, int fullTime,
+			int halfTime) {
 		super();
 		this.salary = salary;
 		this.empRatePerHr = empRatePerHr;
@@ -26,6 +31,9 @@ public class EmpWageCalculater {
 		this.maxDaysInMonth = maxDaysInMonth;
 		this.totalEmpHrs = totalEmpHrs;
 		this.totalWorkingDays = totalWorkingDays;
+		this.store = store;
+		this.fullTime = fullTime;
+		this.halfTime = halfTime;
 	}
 
 	public void calculateWage(EmpWageCalculater empWageCalculater) {
@@ -37,11 +45,11 @@ public class EmpWageCalculater {
 
 			switch (a) {
 			case 0:
-				empWageCalculater.empHrs = 8;
+				empWageCalculater.empHrs = empWageCalculater.fullTime;
 				// System.out.println("Full Time");
 				break;
 			case 1:
-				empWageCalculater.empHrs = 4;
+				empWageCalculater.empHrs = empWageCalculater.halfTime;
 				// System.out.println("Part Time");
 				break;
 			case 2:
@@ -55,15 +63,20 @@ public class EmpWageCalculater {
 			empWageCalculater.totalSalary = empWageCalculater.totalSalary + empWageCalculater.salary;
 
 		}
-		System.out.println("Total salary for " + empWageCalculater.totalWorkingDays + " days or "
-				+ empWageCalculater.totalEmpHrs + " hours is: " + empWageCalculater.totalSalary);
+		System.out.println(empWageCalculater.store + " Total salary for " + empWageCalculater.totalWorkingDays
+				+ " days or " + empWageCalculater.totalEmpHrs + " hours is: " + empWageCalculater.totalSalary);
 
 	}
 
 	public static void main(String args[]) {
 
-		EmpWageCalculater empWageCalculater = new EmpWageCalculater(0, 20, 8, 20, 0, 100, 20, 0, 0);
-		empWageCalculater.calculateWage(empWageCalculater);
+		EmpWageCalculater empWageCalculaterStore1 = new EmpWageCalculater("Store 1", 0, 20, 8, 20, 0, 100, 20, 0, 0, 8,
+				4);
+		empWageCalculaterStore1.calculateWage(empWageCalculaterStore1);
+
+		EmpWageCalculater empWageCalculaterStore2 = new EmpWageCalculater("Store 2", 0, 22, 8, 22, 0, 90, 22, 0, 0, 10,
+				5);
+		empWageCalculaterStore2.calculateWage(empWageCalculaterStore2);
 
 	}
 }
