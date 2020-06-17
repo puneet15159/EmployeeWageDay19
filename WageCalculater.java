@@ -1,6 +1,7 @@
+import java.util.List;
 
 public interface WageCalculater {
 	
-	public void calculateWage(EmpWageCalculater[] empWageCalculaterArray);
+	public void calculateWage(List<EmpWageCalculater> empWageCalculaterArray);
 
 }

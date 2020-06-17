@@ -41,46 +41,46 @@ public class EmpWageCalculater implements WageCalculater{
 		this.halfTime = halfTime;
 	}
 
-	public void calculateWage(EmpWageCalculater[] empWageCalculaterArray) {
+	public void calculateWage(List<EmpWageCalculater> empWageCalculaterArray) {
 
-		for (int i = 0; i < empWageCalculaterArray.length; i++) {
-			while (empWageCalculaterArray[i].totalEmpHrs <= empWageCalculaterArray[i].maxHrsInMonth
-					&& empWageCalculaterArray[i].totalWorkingDays < empWageCalculaterArray[i].maxDaysInMonth) {
+		for (int i = 0; i < empWageCalculaterArray.size(); i++) {
+			while (empWageCalculaterArray.get(i).totalEmpHrs <= empWageCalculaterArray.get(i).maxHrsInMonth
+					&& empWageCalculaterArray.get(i).totalWorkingDays < empWageCalculaterArray.get(i).maxDaysInMonth) {
 				int a = (int) (Math.random() * ((2 - 0) + 1)) + 0;
-				empWageCalculaterArray[i].totalWorkingDays++;
-				if (empWageCalculaterArray[i].totalWorkingDays >= 20) {
+				empWageCalculaterArray.get(i).totalWorkingDays++;
+				if (empWageCalculaterArray.get(i).totalWorkingDays >= 20) {
 					break;
 				}
 				
-				if (empWageCalculaterArray[i].totalEmpHrs >= 100) {
+				if (empWageCalculaterArray.get(i).totalEmpHrs >= 100) {
 					break;
 				}
 				switch (a) {
 				case 0:
-					empWageCalculaterArray[i].empHrs = empWageCalculaterArray[i].fullTime;
+					empWageCalculaterArray.get(i).empHrs = empWageCalculaterArray.get(i).fullTime;
 //					System.out.println("Full Time");
 					break;
 				case 1:
-					empWageCalculaterArray[i].empHrs = empWageCalculaterArray[i].halfTime;
+					empWageCalculaterArray.get(i).empHrs = empWageCalculaterArray.get(i).halfTime;
 //					System.out.println("Part Time");
 					break;
 				case 2:
-					empWageCalculaterArray[i].empHrs = 0;
+					empWageCalculaterArray.get(i).empHrs = 0;
 //					System.out.println("Null Time");
 					break;
 
 				}
-				empWageCalculaterArray[i].totalEmpHrs = empWageCalculaterArray[i].totalEmpHrs
-						+ empWageCalculaterArray[i].empHrs;
-				empWageCalculaterArray[i].salary = empWageCalculaterArray[i].empHrs
-						* empWageCalculaterArray[i].empRatePerHr;
-				empWageCalculaterArray[i].totalSalary = empWageCalculaterArray[i].totalSalary
-						+ empWageCalculaterArray[i].salary;
+				empWageCalculaterArray.get(i).totalEmpHrs = empWageCalculaterArray.get(i).totalEmpHrs
+						+ empWageCalculaterArray.get(i).empHrs;
+				empWageCalculaterArray.get(i).salary = empWageCalculaterArray.get(i).empHrs
+						* empWageCalculaterArray.get(i).empRatePerHr;
+				empWageCalculaterArray.get(i).totalSalary = empWageCalculaterArray.get(i).totalSalary
+						+ empWageCalculaterArray.get(i).salary;
 
 			}
-			System.out.println(empWageCalculaterArray[i].store + " Total salary for "
-					+ empWageCalculaterArray[i].totalWorkingDays + " days or " + empWageCalculaterArray[i].totalEmpHrs
-					+ " hours is: " + empWageCalculaterArray[i].totalSalary);
+			System.out.println(empWageCalculaterArray.get(i).store + " Total salary for "
+					+ empWageCalculaterArray.get(i).totalWorkingDays + " days or " + empWageCalculaterArray.get(i).totalEmpHrs
+					+ " hours is: " + empWageCalculaterArray.get(i).totalSalary);
 		}
 
 	}
@@ -90,16 +90,19 @@ public class EmpWageCalculater implements WageCalculater{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter number of stores");
 		int numberOFCompanies = sc.nextInt();
-		EmpWageCalculater EmpWageCalculaterArray[] = new EmpWageCalculater[numberOFCompanies];
+		List<EmpWageCalculater> EmpWageCalculaterArray = new ArrayList<>();
+//		EmpWageCalculater EmpWageCalculaterArray[] = new EmpWageCalculater[numberOFCompanies];
 
 		for (int i = 0; i < numberOFCompanies; i++) {
+			System.out.println("Store "+i);
+			System.out.println();
 			System.out.println("Enter full time hours for Store " + (i + 1));
 			int fullTimeHrs = sc.nextInt();
 			System.out.println("Enter part time hours for Store " + (i + 1));
 			int partTimeHrs = sc.nextInt();
 			EmpWageCalculater wageCalculater = new EmpWageCalculater("Store "+(i+1), 0, 20, 0, 0, 0, 100, 20, 0, 0, fullTimeHrs, partTimeHrs);
-			EmpWageCalculaterArray[i] = wageCalculater;
-			System.out.println(wageCalculater.store);
+			EmpWageCalculaterArray.add(wageCalculater);
+			
 		}
 
 		EmpWageCalculater calculater = new EmpWageCalculater();
