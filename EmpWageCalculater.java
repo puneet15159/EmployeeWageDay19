@@ -41,13 +41,10 @@ public class EmpWageCalculater implements WageCalculater {
 		this.halfTime = halfTime;
 	}
 
-	
-
+	HashMap<String, Integer> companyWageByName = new HashMap<String, Integer>();
 
 
 	public void calculateWage(List<EmpWageCalculater> empWageCalculaterArray) {
-		
-		
 
 		for (int i = 0; i < empWageCalculaterArray.size(); i++) {
 			List<Integer> dailySalary = new ArrayList<>();
@@ -91,11 +88,20 @@ public class EmpWageCalculater implements WageCalculater {
 					+ empWageCalculaterArray.get(i).totalWorkingDays + " days or "
 					+ empWageCalculaterArray.get(i).totalEmpHrs + " hours is: "
 					+ empWageCalculaterArray.get(i).totalSalary);
+
+			companyWageByName.put(empWageCalculaterArray.get(i).store.toLowerCase(), empWageCalculaterArray.get(i).totalSalary);
+
 			System.out.println();
-			System.out.println("daily wages for "+empWageCalculaterArray.get(i).store+" were "+dailySalary);
+			System.out.println("daily wages for " + empWageCalculaterArray.get(i).store + " were " + dailySalary);
 			System.out.println();
 		}
 
+	}
+	
+	private void getWageByCompanyName(String lowerCase) {
+		int salary = companyWageByName.get(lowerCase.toLowerCase());
+		System.out.println(salary);
+		
 	}
 
 	public static void main(String args[]) {
@@ -107,7 +113,7 @@ public class EmpWageCalculater implements WageCalculater {
 //		EmpWageCalculater EmpWageCalculaterArray[] = new EmpWageCalculater[numberOFCompanies];
 
 		for (int i = 0; i < numberOFCompanies; i++) {
-			System.out.println("Store " + i);
+			System.out.println("Store " + (i+1));
 			System.out.println();
 			System.out.println("Enter full time hours for Store " + (i + 1));
 			int fullTimeHrs = sc.nextInt();
@@ -121,6 +127,24 @@ public class EmpWageCalculater implements WageCalculater {
 
 		EmpWageCalculater calculater = new EmpWageCalculater();
 		calculater.calculateWage(EmpWageCalculaterArray);
+
+		sc.nextLine();
+		System.out.println("Enter the name of the Store whose wage you want to see");
+		String company = sc.nextLine();
+		System.out.println();
 		
+		calculater.getWageByCompanyName(company.toLowerCase());
+	
+		Iterator iterator = calculater.companyWageByName.keySet().iterator();
+
+		while (iterator.hasNext()) {
+		   String key = iterator.next().toString();
+		   Integer value = calculater.companyWageByName.get(key);
+
+		   System.out.println(key + " " + value);
+		}
+
 	}
+
+	
 }
