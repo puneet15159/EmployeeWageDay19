@@ -17,7 +17,7 @@ public class EmpWageCalculater {
 
 	int fullTime;
 	int halfTime;
-
+	
 	public EmpWageCalculater(String store, int salary, int empRatePerHr, int empHrs, int numberOfWorkingDays,
 			int totalSalary, int maxHrsInMonth, int maxDaysInMonth, int totalEmpHrs, int totalWorkingDays, int fullTime,
 			int halfTime) {
