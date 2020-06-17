@@ -70,11 +70,11 @@ public class EmpWageCalculater {
 
 	public static void main(String args[]) {
 
-		EmpWageCalculater empWageCalculaterStore1 = new EmpWageCalculater("Store 1", 0, 20, 8, 20, 0, 100, 20, 0, 0, 8,
+		EmpWageCalculater empWageCalculaterStore1 = new EmpWageCalculater("Store A", 0, 20, 8, 20, 0, 100, 20, 0, 0, 8,
 				4);
 		empWageCalculaterStore1.calculateWage(empWageCalculaterStore1);
 
-		EmpWageCalculater empWageCalculaterStore2 = new EmpWageCalculater("Store 2", 0, 22, 8, 22, 0, 90, 22, 0, 0, 10,
+		EmpWageCalculater empWageCalculaterStore2 = new EmpWageCalculater("Store B", 0, 22, 8, 22, 0, 90, 22, 0, 0, 10,
 				5);
 		empWageCalculaterStore2.calculateWage(empWageCalculaterStore2);
 
